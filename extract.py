@@ -32,3 +32,21 @@ psgc = extract("F:\Data Engineering\psgc\datasets\PSGC-4Q-2023-Publication-Dataf
                sheet = 3,
                rows = None,
                ind_col = None )
+
+# renaming and cleaning the columns/headers 
+def transform(data):
+    
+    # changing columns/headers string to lowercase, replacing special characters to spaces
+    clean_columns = data.columns.str.lower().str.replace('\W', '')
+    
+    # passing function as clean_columns to dataframe columns
+    data.columns = clean_columns
+    
+    # return to function
+    return data
+
+# column names not transformed
+psgc.columns
+
+# Transformation
+psgc = transform(psgc)
