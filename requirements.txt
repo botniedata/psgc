@@ -2,4 +2,3 @@ sqlalchemy
 pandas
 psycopg2
 openpyxl
-re
