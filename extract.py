@@ -1,6 +1,8 @@
 # import packages pandas and numpy
 import pandas as pd
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore", "\nPyarrow", DeprecationWarning)
 
 # function to extract excel file as dataframe
 def extract(file_path, sheet, rows, ind_col):
@@ -28,7 +30,7 @@ def extract(file_path, sheet, rows, ind_col):
     return data
 
 # call the function
-psgc = extract("F:\Data Engineering\psgc\datasets\PSGC-4Q-2023-Publication-Datafile.xlsx",
+psgc = extract("datasets\PSGC-4Q-2023-Publication-Datafile.xlsx",
                sheet = 3,
                rows = None,
                ind_col = None )
@@ -50,3 +52,4 @@ psgc.columns
 
 # Transformation
 psgc = transform(psgc)
+
