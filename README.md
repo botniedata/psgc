@@ -9,4 +9,6 @@
 - datasets ignored to push added in .gitignore
 - adds openpyxl in requirements.txt
 - adds notebook.ipynb file for better view of results
+- adds re package in requirements.txt
+- removed re package in requirements.txt
 
