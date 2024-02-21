@@ -1,8 +1,7 @@
 # import packages pandas and numpy
 import pandas as pd
 import numpy as np
-import warnings
-warnings.filterwarnings("ignore", "\nPyarrow", DeprecationWarning)
+#import re
 
 # function to extract excel file as dataframe
 def extract(file_path, sheet, rows, ind_col):
@@ -30,19 +29,30 @@ def extract(file_path, sheet, rows, ind_col):
     return data
 
 # call the function
-psgc = extract("datasets\PSGC-4Q-2023-Publication-Datafile.xlsx",
+psgc = extract(r'datasets\PSGC-4Q-2023-Publication-Datafile.xlsx',
                sheet = 3,
                rows = None,
-               ind_col = None )
+               ind_col = None)
 
 # renaming and cleaning the columns/headers 
 def transform(data):
-    
-    # changing columns/headers string to lowercase, replacing special characters to spaces
-    clean_columns = data.columns.str.lower().str.replace('\W', '').str.replace('-', '').str.replace('\n', '').str.replace(':', '').str.replace('/', '').str.replace(' ', '')
-    
+
+    print("Original Columns before cleaning:")
+    for i, column in enumerate(data.columns):
+        print(f"{i}: {column}")
+
+    # raw string notation 'r', '\W' remove white spaces, '\n' remove new lines, '/-()' remove set of characters, `|:` part of partern alternative and removal of colons `:`
+    # `regex=True` This argument specifies that the pattern should be treated as a regular expression.
+    clean_columns = data.columns.str.lower().str.replace(r'[\W\n/()-]|:', '', regex=True)
+
     # passing function as clean_columns to dataframe columns
     data.columns = clean_columns
+
+    #
+    print("\nCleaned Columns:")
+    for i, column in enumerate(data.columns):
+        print(f"{i}: {column}")
+
     
     # return to function
     return data
@@ -50,8 +60,6 @@ def transform(data):
 # column names not transformed
 psgc.columns
 
-# Transformation
+# cleaning 
 psgc = transform(psgc)
-
-print(psgc.columns)
 
