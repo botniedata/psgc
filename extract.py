@@ -39,7 +39,7 @@ psgc = extract("datasets\PSGC-4Q-2023-Publication-Datafile.xlsx",
 def transform(data):
     
     # changing columns/headers string to lowercase, replacing special characters to spaces
-    clean_columns = data.columns.str.lower().str.replace('\W', '')
+    clean_columns = data.columns.str.lower().str.replace('\W', '').str.replace('-', '').str.replace('\n', '').str.replace(':', '').str.replace('/', '').str.replace(' ', '')
     
     # passing function as clean_columns to dataframe columns
     data.columns = clean_columns
@@ -52,4 +52,6 @@ psgc.columns
 
 # Transformation
 psgc = transform(psgc)
+
+print(psgc.columns)
 
