@@ -53,7 +53,6 @@ def transform(data):
     for i, column in enumerate(data.columns):
         print(f"{i}: {column}")
 
-    
     # return to function
     return data
 
