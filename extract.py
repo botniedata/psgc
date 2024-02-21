@@ -37,7 +37,7 @@ psgc = extract(r'datasets\PSGC-4Q-2023-Publication-Datafile.xlsx',
 # renaming and cleaning the columns/headers 
 def transform(data):
 
-    print("Original Columns before cleaning:")
+    print("Before Column Name Cleaning:")
     for i, column in enumerate(data.columns):
         print(f"{i}: {column}")
 
@@ -49,7 +49,7 @@ def transform(data):
     data.columns = clean_columns
 
     #
-    print("\nCleaned Columns:")
+    print("\nAfter Column Name Cleaning:")
     for i, column in enumerate(data.columns):
         print(f"{i}: {column}")
 
@@ -60,6 +60,6 @@ def transform(data):
 # column names not transformed
 psgc.columns
 
-# cleaning 
+# cleaning column names
 psgc = transform(psgc)
 
